@@ -1,6 +1,7 @@
 import p5 from 'p5';
 
 let bunnyImage: p5.Image;
+const tiles = 5;
 
 const p = new p5((sketch) => {
   sketch.setup = setup;
@@ -18,5 +19,15 @@ function setup() {
 
 function draw() {
   p.background('white');
-  p.image(bunnyImage, 0, 0);
+  let tileSize = bunnyImage.width/tiles;
+  
+  p.stroke('white');
+  p.noFill();
+  p.strokeWeight(2);
+  for (let zeile = 0; zeile <= tiles; zeile++) {
+    for (let i = 0; i <= tiles; i++) {
+      p.image(bunnyImage, tileSize * i, tileSize * zeile, tileSize, tileSize, tileSize * i, tileSize * zeile, tileSize, tileSize);
+      p.rect(tileSize * i, tileSize * zeile, tileSize, tileSize);
+    }
+  }
 }
